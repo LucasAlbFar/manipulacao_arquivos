@@ -13,7 +13,7 @@ def run():
         validar_cpf_e_cnpj(dados)
         dados_validos = selecionar_dados_validos(dados)
         dados_invalidos = selecionar_dados_invalidos(dados)
-        salvar_arquivo_invalido_csv(dados_invalidos, arquivo)
+        salvar_arquivo_rejeitados(dados_invalidos, arquivo)
         gravar_em_banco_dados(dados_validos)
         mensagem_final(dados_validos, dados_invalidos, arquivo)
 

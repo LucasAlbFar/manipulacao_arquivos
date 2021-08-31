@@ -90,7 +90,7 @@ def selecionar_dados_invalidos(df: pd.DataFrame):
     return realizar_selecao(selecao, df)
 
 
-def salvar_arquivo_invalido_csv(dados_invalidos: pd.DataFrame, nome_arquivo: str):
+def salvar_arquivo_rejeitados(dados_invalidos: pd.DataFrame, nome_arquivo: str):
     """
       Salvar Pandas DataFrames gerados na execução da rotina em arquivos CSV
     """
