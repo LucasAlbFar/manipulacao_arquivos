@@ -95,7 +95,7 @@ def salvar_arquivo_rejeitados(dados_invalidos: pd.DataFrame, nome_arquivo: str):
       Salvar Pandas DataFrames gerados na execução da rotina em arquivos CSV
     """
     if dados_invalidos.shape[0] > 0:
-        diretorio = 'dados/rejeitados/dados_invalidos_' + nome_arquivo + '.csv'
+        diretorio = 'dados/rejeitados/rejeitados_' + nome_arquivo + '.csv'
         dados_invalidos.to_csv(diretorio, index=False)
 
 
