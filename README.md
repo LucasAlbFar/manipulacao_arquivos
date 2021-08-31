@@ -34,7 +34,7 @@ Com o cadastro de um indivíduo finalizado, será possível incluir uma mídia d
 * Para limitar o número de tipos de mídia (MEDIA TYPE), não foi disponibilizado um endpoint para realizar o POST nesta tabela;
 
 ## Informações de ambiente:
-[requirements.txt](https://github.com/LucasAlbFar/Django_DRF_PeopleRegister/blob/main/api/requirements.txt)
+[requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt)
 
 ## Contato:
 [<img src="https://img.shields.io/badge/LucasFaria-0A66C2?style=flat-square&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/lucasalbfar/)
