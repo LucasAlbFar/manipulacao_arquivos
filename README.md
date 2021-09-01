@@ -2,25 +2,17 @@
 
 # Serviço de Manipulação de Dados
 
-API que simula um controlador de registros de pessoas, permitindo ao client:
- * Cadastrar categorias em que uma pessoa poderá ser registrada;
- * Cadastrar e atualizar dados de uma nova pessoa no sistema;
- * Fazer upload de um arquivo de identificação de determinada pessoa cadastrada;
- * Visualizar todas as medias carregadas no sistema ou filtrar esses registros por cada pessoa registrada no sistema;
- * Consultar a auditoria das inclusões e atualizaçõe dos dados de uma pessoa ou a lista de auditoria do sistema;
+Realizar a insereção de registros em BD PostgreSQL, recuperados através de arquivo TXT ou CSV. 
 
-## Endpoints:
-* /admin/ -> administração site
-* /type/ -> visualizar e cadastrar as categoria de uma pessoa;
-* /mediatype/ -> visualizar os tipos de media de identificação permitidas no sistema;
-* /person/ -> cadastrar e visualizar as pessoas registradas no sistema;
-* /media/ -> cadastrar e visualizar os arquivos de identificação de cada pessoa;
-* /audit/ -> vusualizar todas as auditorias do sistema;
-* /listaudit/<int:pk>/ -> listar todas as auditorias para uma determinada pessoa do sistema;
-* /listperson/<int:cpf>/ -> listar uma pessoa através do seu cpf;
-* /listmedia/<int:pk>/ -> listar todas as medias através da chave ID da pessoa cadastrada;
-* /swagger/ -> documentação da API 
-* /redoc/ -> documentação da API 
+## Configurações e Funcionamento:
+* Instalar os pacotes identificados no arquivo [requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt), contendo as bibliotecas necessárias para a execução da aplicação;
+* Iniciar banco de Dados PostgreSQL, com database 'dados_validos', alterando dados de username e password conforme arquitetura local, no arquivo 'config_db.py' localizado no na pasta [code](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/config_BD.py);
+* Mover arquivo à ser persistido em diretório raiz [dados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados);
+* Executar o programa [main.py](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/main.py);
+* Validar a mensagem de retorno final e, caso exista registros rejeitados, localiza-los na diretório [dados/rejeitados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados/rejeitados);
+  * O nome do arquivo rejeitado sequirá a seguinte regra:
+    * 'rejeitados_' + nome do arquivo inicial
+
 
 ## Funcionamento:
 Ao iniciar a aplicação, os dados de PERSON TYPE e MEDIA TYPE serão automaticamente carregados com alguns valores defaut, sendo que o client poderá incluir novas categorias na tabela PERSON TYPE através do comando POST.
