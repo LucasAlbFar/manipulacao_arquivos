@@ -172,7 +172,7 @@ def gravar_em_banco_dados(df: pd.DataFrame):
     """
     if df.shape[0] > 0:
         engine = criar_engine()
-        df.to_sql('dados', engine, if_exists='replace', index=False)
+        df.to_sql('dados_validos', engine, if_exists='replace', index=False)
 
 
 def mensagem_final(dados_validos: pd.DataFrame, dados_invalidos: pd.DataFrame, nome_arquivo: str):
