@@ -1,6 +1,6 @@
 [<img src="https://img.shields.io/badge/author-Lucas Faria-yellow?style=flat-square"/>](https://github.com/LucasAlbFar)
 
-# API Django REST Framework People Register
+# Serviço de Manipulação de Dados
 
 API que simula um controlador de registros de pessoas, permitindo ao client:
  * Cadastrar categorias em que uma pessoa poderá ser registrada;
