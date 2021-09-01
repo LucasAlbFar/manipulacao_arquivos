@@ -6,7 +6,7 @@ Realizar a insereção de registros em BD PostgreSQL, recuperados através de ar
 
 ## Configurações e Funcionamento:
 * Instalar os pacotes identificados no arquivo [requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt), contendo as bibliotecas necessárias para a execução da aplicação;
-* Iniciar banco de Dados PostgreSQL, com database 'dados_validos', alterando dados de username e password conforme arquitetura local, no arquivo 'config_db.py' localizado no na pasta [code](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/config_BD.py);
+* Iniciar banco de Dados PostgreSQL, com database 'dados_validos', alterando dados de username e password conforme arquitetura local, no arquivo localizado no na pasta [config_db.py/code](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/config_BD.py);
 * Mover arquivo à ser persistido em diretório raiz [dados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados);
 * Executar o programa [main.py](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/main.py);
 * Validar a mensagem de retorno final e, caso exista registros rejeitados, localiza-los na diretório [dados/rejeitados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados/rejeitados);
