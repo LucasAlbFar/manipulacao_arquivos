@@ -6,10 +6,10 @@ Realizar a insereção de registros em BD PostgreSQL, recuperados através de ar
 
 ## Configurações e Funcionamento:
 * Instalar os pacotes identificados no arquivo [requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt), contendo as bibliotecas necessárias para a execução da aplicação;
-* Iniciar banco de Dados PostgreSQL, com database 'dados_validos', alterando dados de username e password conforme arquitetura local, no arquivo localizado no na pasta [code/config_db.py](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/config_BD.py);
-* Mover arquivo à ser persistido em diretório raiz [dados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados);
-* Executar o programa [main.py](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/main.py);
-* Validar a mensagem de retorno final e, caso exista registros rejeitados, localiza-los na diretório [dados/rejeitados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados/rejeitados);
+* Iniciar banco de Dados PostgreSQL, com database 'dados_validos', alterando dados de username e password conforme arquitetura local, no arquivo [code/config_db.py](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/config_BD.py);
+* Mover arquivo à ser persistido em diretório raiz [code/dados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados);
+* Executar o programa [code/main.py](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/main.py);
+* Validar a mensagem de retorno final e, caso exista registros rejeitados, localiza-los na diretório [code/dados/rejeitados](https://github.com/LucasAlbFar/manipulacao_arquivos/tree/main/source/dados/rejeitados);
   * O nome do arquivo rejeitado sequirá a seguinte regra:
     * 'rejeitados_' + nome do arquivo inicial
 
