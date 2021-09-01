@@ -37,6 +37,17 @@ def converter_campo_para_tipo_float(df: pd.DataFrame):
     df['TICKET_ULTIMA_COMPRA'] = converter_para_float(df['TICKET_ULTIMA_COMPRA'])
 
 
+def converter_para_float(dados: pd.DataFrame):
+    """
+      Converter para tipo float a coluna  de dados recebida via parâmetro, alterando o separado ',' para '.'
+      Parâmetro: Dados da coluna do dataframe a ter seus dados convertidos para float
+      Retorno: Dados convertidos para float
+    """
+    dados = dados.str.replace(',', '.').astype(float)
+
+    return dados
+
+
 def limpar_campo_cpf_e_cnpj(df: pd.DataFrame):
     """
       Realizar chamada de funções para realizar a limpeza de campos cpf e cpnj
@@ -44,6 +55,22 @@ def limpar_campo_cpf_e_cnpj(df: pd.DataFrame):
     df['CPF'] = limpar_campo_doc(df['CPF'])
     df['LOJA_MAIS_FREQUENTE'] = limpar_campo_doc(df['LOJA_MAIS_FREQUENTE'])
     df['LOJA_ULTIMA_COMPRA'] = limpar_campo_doc(df['LOJA_ULTIMA_COMPRA'])
+
+
+def limpar_campo_doc(coluna_documento: pd.DataFrame):
+    """
+      Realizar a limpeza de campo documento, removendo caracteres não-numéricos
+      Parâmetro: Coluna que contém os dados de documento a ser higienizado
+                 Identificador de coluna que contém campo CNPJ
+      Retorno: Coluna com dados higienizados
+    """
+    coluna_documento = coluna_documento.str.replace('.', '')
+    coluna_documento = coluna_documento.str.replace('-', '')
+
+    if len(coluna_documento) > 11:
+        coluna_documento = coluna_documento.str.replace('/', '')
+
+    return coluna_documento
 
 
 def converter_campo_para_datatime(df: pd.DataFrame):
@@ -68,80 +95,6 @@ def validar_cpf_e_cnpj(df: pd.DataFrame):
     df['CPF_VALIDO'] = [cpf_valido(cpf) for cpf in df['CPF']]
     df['CNPJ_LOJA_MAIS_FREQUENTE_VALIDO'] = [cnpj_valido(cnpj) for cnpj in df['LOJA_MAIS_FREQUENTE']]
     df['CNPJ_LOJA_ULTIMA_COMPRA_VALIDO'] = [cnpj_valido(cnpj) for cnpj in df['LOJA_ULTIMA_COMPRA']]
-
-
-def selecionar_dados_validos(df: pd.DataFrame):
-    """
-      Realizar chamada de função para selecionar dados que contém CPF e CNPJ válidos
-    """
-    selecao = ((df['CPF_VALIDO'] == True) & (df['CNPJ_LOJA_MAIS_FREQUENTE_VALIDO'] == True) &
-               (df['CNPJ_LOJA_ULTIMA_COMPRA_VALIDO'] == True))
-
-    return realizar_selecao(selecao, df)
-
-
-def selecionar_dados_invalidos(df: pd.DataFrame):
-    """
-      Realizar chamada de função para selecionar dados que contém CPF e CNPJ inválidos
-    """
-    selecao = ((df['CPF_VALIDO'] == False) | (df['CNPJ_LOJA_MAIS_FREQUENTE_VALIDO'] == False) |
-                         (df['CNPJ_LOJA_ULTIMA_COMPRA_VALIDO'] == False))
-
-    return realizar_selecao(selecao, df)
-
-
-def salvar_arquivo_rejeitados(dados_invalidos: pd.DataFrame, nome_arquivo: str):
-    """
-      Salvar Pandas DataFrames gerados na execução da rotina em arquivos CSV
-    """
-    if dados_invalidos.shape[0] > 0:
-        diretorio = 'dados/rejeitados/rejeitados_' + nome_arquivo + '.csv'
-        dados_invalidos.to_csv(diretorio, index=False)
-
-
-def gravar_em_banco_dados(df: pd.DataFrame):
-    """
-      Gravar dados válidos em banco de dados PostgreSQL
-    """
-    if df.shape[0] > 0:
-        engine = criar_engine()
-        df.to_sql('dados', engine, if_exists='replace', index=False)
-        # df.to_sql('dados', engine, if_exists='append', index=False)
-
-
-def mensagem_final(dados_validos: pd.DataFrame, dados_invalidos: pd.DataFrame, nome_arquivo: str):
-    """
-      Exibir mensagem final
-    """
-    print(f'Gravado(s) {dados_validos.shape[0]} registro(s) e descartado(s) '
-          f'{dados_invalidos.shape[0]} registro(s), do arquivo {nome_arquivo}.')
-
-
-def converter_para_float(dados: pd.DataFrame):
-    """
-      Converter para tipo float a coluna  de dados recebida via parâmetro, alterando o separado ',' para '.'
-      Parâmetro: Dados da coluna do dataframe a ter seus dados convertidos para float
-      Retorno: Dados convertidos para float
-    """
-    dados = dados.str.replace(',', '.').astype(float)
-
-    return dados
-
-
-def limpar_campo_doc(coluna_documento: pd.DataFrame):
-    """
-      Realizar a limpeza de campo documento, removendo caracteres não-numéricos
-      Parâmetro: Coluna que contém os dados de documento a ser higienizado
-                 Identificador de coluna que contém campo CNPJ
-      Retorno: Coluna com dados higienizados
-    """
-    coluna_documento = coluna_documento.str.replace('.', '')
-    coluna_documento = coluna_documento.str.replace('-', '')
-
-    if len(coluna_documento) > 11:
-        coluna_documento = coluna_documento.str.replace('/', '')
-
-    return coluna_documento
 
 
 def cpf_valido(num_cpf: str):
@@ -169,6 +122,26 @@ def cnpj_valido(num_cnpj: str):
         return cnpj.validate(num_cnpj)
 
 
+def selecionar_dados_validos(df: pd.DataFrame):
+    """
+      Realizar chamada de função para selecionar dados que contém CPF e CNPJ válidos
+    """
+    selecao = ((df['CPF_VALIDO'] == True) & (df['CNPJ_LOJA_MAIS_FREQUENTE_VALIDO'] == True) &
+               (df['CNPJ_LOJA_ULTIMA_COMPRA_VALIDO'] == True))
+
+    return realizar_selecao(selecao, df)
+
+
+def selecionar_dados_invalidos(df: pd.DataFrame):
+    """
+      Realizar chamada de função para selecionar dados que contém CPF e CNPJ inválidos
+    """
+    selecao = ((df['CPF_VALIDO'] == False) | (df['CNPJ_LOJA_MAIS_FREQUENTE_VALIDO'] == False) |
+                         (df['CNPJ_LOJA_ULTIMA_COMPRA_VALIDO'] == False))
+
+    return realizar_selecao(selecao, df)
+
+
 def realizar_selecao(selecao: pd.Series, df_base: pd.DataFrame):
     """
       Selecionar os registros em 'df_base', à partir de cláusula contida na series 'seleção'
@@ -182,6 +155,44 @@ def realizar_selecao(selecao: pd.Series, df_base: pd.DataFrame):
                                   'CNPJ_LOJA_ULTIMA_COMPRA_VALIDO'], axis=1)
 
     return df_retorno
+
+
+def salvar_arquivo_rejeitados(dados_invalidos: pd.DataFrame, nome_arquivo: str):
+    """
+      Salvar Pandas DataFrames gerados na execução da rotina em arquivos CSV
+    """
+    if dados_invalidos.shape[0] > 0:
+        diretorio = 'dados/rejeitados/rejeitados_' + nome_arquivo + '.csv'
+        dados_invalidos.to_csv(diretorio, index=False)
+
+
+def gravar_em_banco_dados(df: pd.DataFrame):
+    """
+      Gravar dados válidos em banco de dados PostgreSQL
+    """
+    if df.shape[0] > 0:
+        engine = criar_engine()
+        df.to_sql('dados', engine, if_exists='replace', index=False)
+
+
+def mensagem_final(dados_validos: pd.DataFrame, dados_invalidos: pd.DataFrame, nome_arquivo: str):
+    """
+      Exibir mensagem final
+    """
+    print(f'Gravado(s) {dados_validos.shape[0]} registro(s) e descartado(s) '
+          f'{dados_invalidos.shape[0]} registro(s), do arquivo {nome_arquivo}.')
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
