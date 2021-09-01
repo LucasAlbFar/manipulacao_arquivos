@@ -2,7 +2,7 @@
 
 # Serviço de Manipulação de Dados
 
-Realizar a insereção de registros em BD PostgreSQL, recuperados através de arquivo TXT ou CSV. 
+Realizar a persistência de dados em BD PostgreSQL, recuperados através de arquivo TXT ou CSV. 
 
 ## Configurações e Funcionamento:
 * Instalar os pacotes identificados no arquivo [requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt), contendo as bibliotecas necessárias para a execução da aplicação;
