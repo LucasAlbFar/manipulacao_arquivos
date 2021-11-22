@@ -2,7 +2,7 @@
 
 # Serviço de Manipulação de Dados
 
-Realizar a persistência de dados em BD PostgreSQL, recuperados através de arquivo TXT ou CSV. 
+Serviço para recebimento arquivo TXT (base_teste.txt), contendo dados das compras realizadas na loja franqueada. Dados serão persistidos antes de se realizar o insert no banco de dados relacional (Postgres).
 
 ## Configurações e Funcionamento:
 * Instalar os pacotes identificados no arquivo [requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt), contendo as bibliotecas necessárias para a execução da aplicação;
