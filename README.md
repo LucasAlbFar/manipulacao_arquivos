@@ -2,7 +2,7 @@
 
 # Serviço de Manipulação de Dados
 
-Serviço para recebimento arquivo TXT (base_teste.txt), contendo dados das compras realizadas na loja franqueada. Dados serão persistidos antes de se realizar o insert no banco de dados relacional (Postgres).
+Serviço para recebimento arquivo TXT (base_teste.txt), contendo dados das compras realizadas na loja franqueada. Dados serão persistidos antes de se realizar o insert no banco de dados relacional (Postgres). Caso algum registro do arquivo esteja em desacordo com as validações iniciais, o mesmo não será inserido no banco de dados, podendo ser localizado no diretório 'dados/rejeitados'.
 
 ## Configurações e Funcionamento:
 * Instalar os pacotes identificados no arquivo [requirements.txt](https://github.com/LucasAlbFar/manipulacao_arquivos/blob/main/source/requirements.txt), contendo as bibliotecas necessárias para a execução da aplicação;
